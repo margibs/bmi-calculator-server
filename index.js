@@ -13,7 +13,7 @@ app.post('/bmi-calculator/standard', (req, res) => {
     let bmi = (weight / (height * height) * 703);
 
     let message = bmiMessage(bmi);
-    res.json({ "bmi" : bmi.toFixed(1), "message" : message});
+    res.json({ "bmi" : isNaN(bmi) ? 0 : bmi.toFixed(1), "message" : message});
 });
 
 
@@ -22,7 +22,7 @@ app.post('/bmi-calculator/metric', (req, res) => {
     let bmi = (weight / (height  * height) ) * 10000;
     
     let message = bmiMessage(bmi);
-    res.json({ "bmi" : bmi.toFixed(1), "message" : message});
+    res.json({ "bmi" : isNaN(bmi) ? 0 : bmi.toFixed(1), "message" : message});
 });
 
 
@@ -31,13 +31,13 @@ const bmiMessage = (bmi) => {
     let message = '';
 
     if (bmi < 18.5 ) {
-        message = 'You are Underweight';
+        message = 'Underweight';
     } else if (bmi >= 18.5 && bmi <= 24.9) {
-        message = 'You are Normal weight';
+        message = 'Normal weight';
     } else if (bmi >= 25 && bmi <= 29.9) {
-        message = "You are Overweight";
+        message = "Overweight";
     } else {
-        message = "You are Obese";
+        message = "Obese";
     }
 
     return message;
