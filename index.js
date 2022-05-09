@@ -30,6 +30,10 @@ const bmiMessage = (bmi) => {
     
     let message = '';
 
+    if(isNaN(bmi)) {
+        return message;
+    }
+
     if (bmi < 18.5 ) {
         message = 'Underweight';
     } else if (bmi >= 18.5 && bmi <= 24.9) {
